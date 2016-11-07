@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		262E90551DD060850028FB57 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262E90541DD060850028FB57 /* Async.swift */; };
+		268163DC1DCF13BC006AC5EB /* ItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268163DB1DCF13BC006AC5EB /* ItemDetail.swift */; };
 		269A04231DCB3CFB00E75D93 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269A04221DCB3CFB00E75D93 /* App.swift */; };
 		269A042A1DCB3CFB00E75D93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 269A04291DCB3CFB00E75D93 /* Assets.xcassets */; };
 		269A042D1DCB3CFB00E75D93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269A042B1DCB3CFB00E75D93 /* LaunchScreen.storyboard */; };
@@ -37,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		262E90541DD060850028FB57 /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
+		268163DB1DCF13BC006AC5EB /* ItemDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetail.swift; sourceTree = "<group>"; };
 		269A041F1DCB3CFB00E75D93 /* ReduxDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReduxDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		269A04221DCB3CFB00E75D93 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		269A04291DCB3CFB00E75D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 				269A04291DCB3CFB00E75D93 /* Assets.xcassets */,
 				269A042B1DCB3CFB00E75D93 /* LaunchScreen.storyboard */,
 				269A042E1DCB3CFB00E75D93 /* Info.plist */,
+				268163DB1DCF13BC006AC5EB /* ItemDetail.swift */,
+				262E90541DD060850028FB57 /* Async.swift */,
 			);
 			path = ReduxDemo;
 			sourceTree = "<group>";
@@ -302,6 +308,8 @@
 				269A04601DCB505F00E75D93 /* CollectionView.swift in Sources */,
 				26BD1B051DCC7C7100472A36 /* EditItem.swift in Sources */,
 				26BD1B111DCC89BB00472A36 /* RxImagePickerDelegateProxy.swift in Sources */,
+				262E90551DD060850028FB57 /* Async.swift in Sources */,
+				268163DC1DCF13BC006AC5EB /* ItemDetail.swift in Sources */,
 				26BD1B101DCC89BB00472A36 /* HUD.swift in Sources */,
 				269A043A1DCB3DE900E75D93 /* CollectionState.swift in Sources */,
 				26BD1AEC1DCC40E700472A36 /* ItemState.swift in Sources */,

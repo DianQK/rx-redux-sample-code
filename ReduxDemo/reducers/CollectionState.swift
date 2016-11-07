@@ -50,6 +50,8 @@ struct CollectionState: ReducerAction {
             self.isEditing.value = true
         case .change:
             self.isEditing.reversed()
+        case .clean:
+            self.elements.value = []
         }
     }
 

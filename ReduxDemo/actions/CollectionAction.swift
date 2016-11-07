@@ -16,4 +16,5 @@ enum CollectionAction {
     case edit
     case done
     case change // =.= 更新是 edit 还是 done
+    case clean
 }

@@ -15,4 +15,6 @@ enum ItemAction {
     case modifyImage(UIImage)
     case cancelModify
     case saveModify
+    case checkDetail(IconItem)
+    case popCheckDetail
 }

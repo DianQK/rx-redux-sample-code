@@ -144,6 +144,7 @@ struct _R: Rswift.Validatable {
       let bundle = _R.hostingBundle
       let editComponent = StoryboardViewControllerResource<UINavigationController>(identifier: "EditComponent")
       let editItem = StoryboardViewControllerResource<EditItem>(identifier: "EditItem")
+      let itemDetail = StoryboardViewControllerResource<ItemDetail>(identifier: "ItemDetail")
       let name = "Collection"
       
       func editComponent(_: Void = ()) -> UINavigationController? {
@@ -154,11 +155,16 @@ struct _R: Rswift.Validatable {
         return UIStoryboard(resource: self).instantiateViewController(withResource: editItem)
       }
       
+      func itemDetail(_: Void = ()) -> ItemDetail? {
+        return UIStoryboard(resource: self).instantiateViewController(withResource: itemDetail)
+      }
+      
       static func validate() throws {
         if UIImage(named: "btn_delete") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'btn_delete' is used in storyboard 'Collection', but couldn't be loaded.") }
         if UIImage(named: "btn_delete_press") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'btn_delete_press' is used in storyboard 'Collection', but couldn't be loaded.") }
         if UIImage(named: "DianQK") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'DianQK' is used in storyboard 'Collection', but couldn't be loaded.") }
         if _R.storyboard.collection().editItem() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'editItem' could not be loaded from storyboard 'Collection' as 'EditItem'.") }
+        if _R.storyboard.collection().itemDetail() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'itemDetail' could not be loaded from storyboard 'Collection' as 'ItemDetail'.") }
         if _R.storyboard.collection().editComponent() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'editComponent' could not be loaded from storyboard 'Collection' as 'UINavigationController'.") }
       }
       

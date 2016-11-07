@@ -26,11 +26,17 @@ class App: UIResponder, UIApplicationDelegate {
                 if let _ = item {
                     // =.= 如果有修改项目，跳到修改项目页
                     topViewController()?.show(R.storyboard.collection.editComponent()!, sender: nil)
-                } else {
-                    // 如果删除了修改项目，则返回到之前页面
-                    guard let top = topViewController() else { return }
-                    top.view.endEditing(true)
-                    dismissViewController(top, animated: true)
+                }
+            })
+            .addDisposableTo(disposeBag)
+
+        _state.item.displayItem
+            .asObservable()
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { item in
+                if let _ = item {
+                    topViewController()?.show(R.storyboard.collection.itemDetail()!, sender: nil)
                 }
             })
             .addDisposableTo(disposeBag)

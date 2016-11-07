@@ -51,11 +51,13 @@ class CollectionView: ReactiveCollectionView {
             .subscribe(onNext: { [unowned self] gesture in
                 switch gesture.state {
                 case .began:
-                    guard let selectedIndexPath = self.indexPathForItem(at: gesture.location(in: self)) else {
+                    guard let selectedIndexPath = self.indexPathForItem(at: gesture.location(in: self)),
+                        let canMoveItemAtIndexPath = self._dataSource.canMoveItemAtIndexPath,
+                        canMoveItemAtIndexPath(self._dataSource, selectedIndexPath) else {
                         break
                     }
-                    dispatch(Action.collection(.edit))
                     self.beginInteractiveMovementForItem(at: selectedIndexPath)
+                    dispatch(Action.collection(.edit))
                 case .changed:
                     self.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
                 case .ended:
@@ -77,7 +79,7 @@ class CollectionView: ReactiveCollectionView {
                 if let item = items.first , items.count == 1 {
                     if item.id != 0 {
                         if !_state.collection.isEditing.value {
-                            HUD.showMessage(item.title.value)
+                            dispatch(Action.item(.checkDetail(item)))
                         }
                         return Observable.empty()
                     } else {

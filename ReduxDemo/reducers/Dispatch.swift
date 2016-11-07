@@ -13,6 +13,12 @@ let dispatch: (Action) -> Void = { action in
     _state.reducer(action)
 }
 
+func dispatch(_ actions: [Action]) {
+    for action in actions {
+        _state.reducer(action)
+    }
+}
+
 protocol ActionValue {
     var value: Action { get }
 }

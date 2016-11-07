@@ -16,7 +16,7 @@ class EditItem: UIViewController {
     @IBOutlet private weak var cancelBarButtonItem: ReactiveBarButtonItem! {
         didSet {
             cancelBarButtonItem.rx.tap
-                .replace(with: Action.item(ItemAction.cancelModify))
+                .replace(with: Action.item(.cancelModify))
                 .dispatch()
                 .addDisposableTo(cancelBarButtonItem.disposeBag)
         }
@@ -31,12 +31,27 @@ class EditItem: UIViewController {
         }
     }
 
+    @IBOutlet weak var deleteButton: UIButton! {
+        didSet {
+            deleteButton
+                .rx.tap.asObservable()
+                .withLatestFrom(_state.item.modifyItem.asObservable().filterNil())
+                .subscribe(onNext: { item in
+                    dispatch(Action.item(.cancelModify))
+                    dispatch(Action.collection(.remove(item: item)))
+                    if let displayItem = _state.item.displayItem.value, displayItem == item {
+                        dispatch(Action.item(.popCheckDetail))
+                    }
+                })
+                .addDisposableTo(rx.disposeBag)
+        }
+    }
+
     @IBOutlet private weak var editImageView: ReactiveImageView! {
         didSet {
             _state.item.modifyItem.asObservable()
-                .flatMap { item in
-                    return item?.logo.asObservable() ?? Observable.empty()
-                }
+                .filterNil()
+                .flatMap { $0.logo.asObservable() }
                 .take(1)
                 .bindTo(editImageView.rx.image)
                 .addDisposableTo(editImageView.disposeBag)
@@ -63,7 +78,7 @@ class EditItem: UIViewController {
                 .addDisposableTo(editImageView.disposeBag)
 
             modifyImage
-                .map { Action.item(ItemAction.modifyImage($0)) }
+                .map { Action.item(.modifyImage($0)) }
                 .dispatch()
                 .addDisposableTo(editImageView.disposeBag)
         }
@@ -77,6 +92,17 @@ class EditItem: UIViewController {
                 .dispatch()
                 .addDisposableTo(editTitleField.disposeBag)
         }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        _state.item.modifyItem.asObservable()
+            .takeWhile { $0 != nil }
+            .subscribe(onCompleted: {
+                self.view.endEditing(true)
+                dismissViewController(self, animated: true)
+            })
+            .addDisposableTo(rx.disposeBag)
     }
 
 }

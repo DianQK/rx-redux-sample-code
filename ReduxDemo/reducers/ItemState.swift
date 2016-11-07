@@ -18,6 +18,7 @@ struct ItemState: ReducerAction {
     lazy private(set) var modifyItem = Variable<IconItem?>(nil)
     lazy private(set) var modifyImage = Variable<UIImage?>(nil)
     lazy private(set) var modifyTitle = Variable<String?>(nil)
+    lazy private(set) var displayItem = Variable<IconItem?>(nil)
 
     mutating func reducer(_ action: ItemAction) {
         switch action {
@@ -38,6 +39,10 @@ struct ItemState: ReducerAction {
             modifyItem.value = nil
         case .cancelModify:
             modifyItem.value = nil
+        case let .checkDetail(item):
+            displayItem.value = item
+        case .popCheckDetail:
+            displayItem.value = nil
         }
     }
     
