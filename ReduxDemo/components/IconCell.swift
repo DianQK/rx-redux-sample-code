@@ -11,40 +11,81 @@ import RxSwift
 import RxCocoa
 import RxExtensions
 
-class IconCell: ReactiveCollectionViewCell {
+//required init(
+//    image: Observable<UIImage>,
+//    title: Observable<String>,
+//    isEditing: Observable<Bool>,
+//    delete: @escaping ((Observable<Void>) -> Disposable)) {
+//    iconImageView = ReactiveImageView(image: image)
+//    titleLabel = ReactiveLabel(text: title)
+//    deleteButton = ReactiveButton.init(title: .just("Delete"), tap: delete)
+//    super.init(frame: CGRect.zero)
+//    iconImageView.layer.cornerRadius = 8.0
+//    iconImageView.layer.masksToBounds = true
+//
+//    self.contentView.addSubview(iconImageView)
+//    iconImageView.snp.makeConstraints { (make) in
+//        make.top.equalToSuperview().offset(15)
+//        make.centerX.equalToSuperview()
+//        make.width.height.equalTo(60)
+//    }
+//}
 
-    @IBOutlet private weak var iconImageView: UIImageView! {
-        didSet {
-            iconImageView.layer.cornerRadius = 8.0
-            iconImageView.layer.masksToBounds = true
-            item.flatMapLatest { $0.logo.asObservable() }.bindTo(iconImageView.rx.image).addDisposableTo(disposeBag)
+//hasElements.filter { !$0 }
+//    .map { _ in  Action.collection(.done) }
+//    .dispatch()
+//    .addDisposableTo(collectionEditBarButtonItem.disposeBag)
+
+class IconCell: UICollectionViewCell {
+
+    public let disposeBag = DisposeBag()
+
+    private lazy var iconImageView: ReactiveImageView = ReactiveImageView(image: self.item.flatMapLatest { $0.logo.asObservable() })
+
+    private lazy var titleLabel: ReactiveLabel = ReactiveLabel(text: self.item.flatMapLatest { $0.title.asObservable() })
+
+    private lazy var deleteButton: ReactiveButton = ReactiveButton(
+        images: (.normal, .just(R.image.btn_delete()!)), (.highlighted, .just(R.image.btn_delete_press()!)),
+        tap: { $0.withLatestFrom(self.item.asObservable()).map { Action.collection(CollectionAction.remove(item: $0)) }.dispatch() }) // TODO: 移除这里的 dispatch
+
+    required override init(frame: CGRect) {
+        super.init(frame: CGRect.zero)
+        iconImageView.layer.cornerRadius = 8.0
+        iconImageView.layer.masksToBounds = true
+
+        deleteButton.contentMode = .scaleAspectFit
+
+        self.contentView.addSubview(iconImageView)
+        iconImageView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(30)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(60)
         }
-    }
 
-    @IBOutlet private weak var titleLabel: UILabel! {
-        didSet {
-            item.flatMapLatest { $0.title.asObservable() }.bindTo(titleLabel.rx.text).addDisposableTo(disposeBag)
+        self.contentView.addSubview(titleLabel)
+        self.titleLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(self.iconImageView.snp.bottom).offset(10)
+            make.centerX.equalTo(self.iconImageView.snp.centerX)
         }
-    }
 
-    @IBOutlet private weak var deleteButton: UIButton! {
-        didSet {
-            deleteButton.rx.tap
-                .withLatestFrom(item.asObservable())
-                .map { Action.collection(CollectionAction.remove(item: $0)) }
-                .dispatch()
-                .addDisposableTo(disposeBag)
+        self.contentView.addSubview(deleteButton)
+        self.deleteButton.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.iconImageView.snp.leading)
+            make.centerY.equalTo(self.iconImageView.snp.top)
+            make.height.width.equalTo(20)
         }
-    }
 
-    let item = ReplaySubject<IconItem>.create(bufferSize: 1)
-
-    override func commonInit() {
         Observable.combineLatest(item, _state.collection
             .isEditing.asObservable()) { $0.1 }
             .bindTo(self.rx.isEditing)
             .addDisposableTo(disposeBag)
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    let item = ReplaySubject<IconItem>.create(bufferSize: 1)
 
     func startWiggling() {
         guard contentView.layer.animation(forKey: "wiggle") == nil else { return }

@@ -30,8 +30,8 @@ struct State: ReducerAction {
 
     typealias ActionType = Action
 
-    lazy var collection = CollectionState()
+    var collection = CollectionState()
 
-    lazy var item = ItemState()
+    var item = ItemState()
     
 }

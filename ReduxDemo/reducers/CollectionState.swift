@@ -29,8 +29,8 @@ struct CollectionState: ReducerAction {
 
     typealias ActionType = CollectionAction
 
-    lazy private(set) var isEditing = Variable(false)
-    lazy private(set) var elements =  Variable<[IconItem]>((1...10).map { IconItem(id: $0, logo: R.image.dianQK()!, title: "\($0)") })
+    private(set) var isEditing = Variable(false)
+    private(set) var elements =  Variable<[IconItem]>((1...10).map { IconItem(id: $0, logo: R.image.dianQK()!, title: "\($0)") })
 
     mutating func reducer(_ action: CollectionAction) {
         switch action {

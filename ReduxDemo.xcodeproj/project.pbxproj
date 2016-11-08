@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		262E90551DD060850028FB57 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262E90541DD060850028FB57 /* Async.swift */; };
 		268163DC1DCF13BC006AC5EB /* ItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268163DB1DCF13BC006AC5EB /* ItemDetail.swift */; };
+		26876B9A1DD1742B00ED8840 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26876B991DD1742B00ED8840 /* SnapKit.framework */; };
 		269A04231DCB3CFB00E75D93 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269A04221DCB3CFB00E75D93 /* App.swift */; };
 		269A042A1DCB3CFB00E75D93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 269A04291DCB3CFB00E75D93 /* Assets.xcassets */; };
 		269A042D1DCB3CFB00E75D93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269A042B1DCB3CFB00E75D93 /* LaunchScreen.storyboard */; };
@@ -20,12 +21,10 @@
 		269A04451DCB3E7400E75D93 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269A043F1DCB3E7400E75D93 /* RxCocoa.framework */; };
 		269A04461DCB3E7400E75D93 /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269A04401DCB3E7400E75D93 /* Rswift.framework */; };
 		269A04471DCB3E7400E75D93 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269A04411DCB3E7400E75D93 /* MBProgressHUD.framework */; };
-		269A044E1DCB3EBE00E75D93 /* Collection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269A04491DCB3EBE00E75D93 /* Collection.storyboard */; };
 		269A04541DCB3F3200E75D93 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269A04531DCB3F3200E75D93 /* R.generated.swift */; };
 		269A04571DCB40E400E75D93 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269A04561DCB40E400E75D93 /* Action.swift */; };
 		269A04591DCB411200E75D93 /* CollectionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269A04581DCB411200E75D93 /* CollectionAction.swift */; };
 		269A045B1DCB441D00E75D93 /* Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269A045A1DCB441D00E75D93 /* Dispatch.swift */; };
-		269A04601DCB505F00E75D93 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269A045F1DCB505F00E75D93 /* CollectionView.swift */; };
 		26BD1AE51DCB849A00472A36 /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BD1AE41DCB849A00472A36 /* IconCell.swift */; };
 		26BD1AEC1DCC40E700472A36 /* ItemState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BD1AEB1DCC40E700472A36 /* ItemState.swift */; };
 		26BD1AEE1DCC437E00472A36 /* ItemAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BD1AED1DCC437E00472A36 /* ItemAction.swift */; };
@@ -41,6 +40,7 @@
 /* Begin PBXFileReference section */
 		262E90541DD060850028FB57 /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
 		268163DB1DCF13BC006AC5EB /* ItemDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetail.swift; sourceTree = "<group>"; };
+		26876B991DD1742B00ED8840 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		269A041F1DCB3CFB00E75D93 /* ReduxDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReduxDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		269A04221DCB3CFB00E75D93 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		269A04291DCB3CFB00E75D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,12 +54,10 @@
 		269A043F1DCB3E7400E75D93 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		269A04401DCB3E7400E75D93 /* Rswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rswift.framework; path = Carthage/Build/iOS/Rswift.framework; sourceTree = "<group>"; };
 		269A04411DCB3E7400E75D93 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = Carthage/Build/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
-		269A04491DCB3EBE00E75D93 /* Collection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Collection.storyboard; sourceTree = "<group>"; };
 		269A04531DCB3F3200E75D93 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		269A04561DCB40E400E75D93 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		269A04581DCB411200E75D93 /* CollectionAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionAction.swift; sourceTree = "<group>"; };
 		269A045A1DCB441D00E75D93 /* Dispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatch.swift; sourceTree = "<group>"; };
-		269A045F1DCB505F00E75D93 /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; tabWidth = 4; };
 		26BD1AE41DCB849A00472A36 /* IconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
 		26BD1AEB1DCC40E700472A36 /* ItemState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemState.swift; sourceTree = "<group>"; };
 		26BD1AED1DCC437E00472A36 /* ItemAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemAction.swift; sourceTree = "<group>"; };
@@ -77,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26876B9A1DD1742B00ED8840 /* SnapKit.framework in Frameworks */,
 				269A04421DCB3E7400E75D93 /* RxExtensions.framework in Frameworks */,
 				269A04431DCB3E7400E75D93 /* RxDataSources.framework in Frameworks */,
 				269A04441DCB3E7400E75D93 /* RxSwift.framework in Frameworks */,
@@ -117,7 +116,6 @@
 				26BD1B021DCC7A8300472A36 /* CollectionList.swift */,
 				26BD1B041DCC7C7100472A36 /* EditItem.swift */,
 				269A04531DCB3F3200E75D93 /* R.generated.swift */,
-				269A04491DCB3EBE00E75D93 /* Collection.storyboard */,
 				269A04291DCB3CFB00E75D93 /* Assets.xcassets */,
 				269A042B1DCB3CFB00E75D93 /* LaunchScreen.storyboard */,
 				269A042E1DCB3CFB00E75D93 /* Info.plist */,
@@ -151,6 +149,7 @@
 		269A043B1DCB3E7400E75D93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				26876B991DD1742B00ED8840 /* SnapKit.framework */,
 				269A043C1DCB3E7400E75D93 /* RxExtensions.framework */,
 				269A043D1DCB3E7400E75D93 /* RxDataSources.framework */,
 				269A043E1DCB3E7400E75D93 /* RxSwift.framework */,
@@ -165,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				26BD1AE41DCB849A00472A36 /* IconCell.swift */,
-				269A045F1DCB505F00E75D93 /* CollectionView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -252,7 +250,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				269A044E1DCB3EBE00E75D93 /* Collection.storyboard in Resources */,
 				269A042D1DCB3CFB00E75D93 /* LaunchScreen.storyboard in Resources */,
 				269A042A1DCB3CFB00E75D93 /* Assets.xcassets in Resources */,
 			);
@@ -286,6 +283,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Rswift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxExtensions.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
 			);
 			outputPaths = (
 			);
@@ -305,7 +303,6 @@
 				26BD1AE51DCB849A00472A36 /* IconCell.swift in Sources */,
 				26BD1B121DCC89BB00472A36 /* UIImagePickerController+Rx.swift in Sources */,
 				269A04591DCB411200E75D93 /* CollectionAction.swift in Sources */,
-				269A04601DCB505F00E75D93 /* CollectionView.swift in Sources */,
 				26BD1B051DCC7C7100472A36 /* EditItem.swift in Sources */,
 				26BD1B111DCC89BB00472A36 /* RxImagePickerDelegateProxy.swift in Sources */,
 				262E90551DD060850028FB57 /* Async.swift in Sources */,

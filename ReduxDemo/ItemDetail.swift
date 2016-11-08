@@ -10,40 +10,26 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxExtensions
+import SnapKit
 
-class ItemDetail: UIViewController {
+let _displayItem = _state.item.displayItem.asObservable().filterNil()
 
-    @IBOutlet private weak var editItemDetailBarButtonItem: ReactiveBarButtonItem! {
-        didSet {
-            editItemDetailBarButtonItem
-                .rx.tap
-                .withLatestFrom(_state.item.displayItem.asObservable().filterNil())
+class ItemDetail: ReactiveViewController {
+
+    private lazy var editItemDetailBarButtonItem: ReactiveBarButtonItem = ReactiveBarButtonItem(
+            title: .just("Edit"),
+            isEnabled: .just(true),
+            tap: { $0.withLatestFrom(_displayItem)
                 .map { Action.item(.modifyItem($0)) }
-                .dispatch()
-                .addDisposableTo(editItemDetailBarButtonItem.disposeBag)
-        }
-    }
+                .dispatch() })
 
-    @IBOutlet private weak var displayImageView: UIImageView! {
-        didSet {
-            _state.item.displayItem.asObservable().filterNil()
-                .flatMap { $0.logo.asObservable() }
-                .bindTo(displayImageView.rx.image)
-                .addDisposableTo(rx.disposeBag) // TODO
-        }
-    }
+    private lazy var displayImageView: ReactiveImageView = ReactiveImageView(image: _displayItem.flatMap { $0.logo.asObservable() })
 
-    @IBOutlet private weak var titleLabel: UILabel! {
-        didSet {
-            _state.item.displayItem.asObservable().filterNil()
-                .flatMap { $0.title.asObservable() }
-                .bindTo(titleLabel.rx.text)
-                .addDisposableTo(rx.disposeBag)
-        }
-    }
+    private lazy var titleLabel: ReactiveLabel = ReactiveLabel(text: _displayItem.flatMap { $0.title.asObservable() })
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
 //        _state.item.displayItem.asObservable().takeWhile { $0 != nil }
 //            .subscribe(onCompleted: {
 //                print("count")
@@ -57,6 +43,22 @@ class ItemDetail: UIViewController {
                 self?.navigationController?.async.popViewController(animated: false)
             })
             .addDisposableTo(rx.disposeBag)
+
+        self.navigationItem.rightBarButtonItem = editItemDetailBarButtonItem
+
+        self.view.addSubview(displayImageView)
+        displayImageView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(120)
+            make.leading.equalToSuperview().offset(60)
+            make.trailing.equalToSuperview().offset(-60)
+            make.width.equalTo(self.displayImageView.snp.height)
+        }
+
+        self.view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.displayImageView.snp.centerX)
+            make.top.equalTo(self.displayImageView.snp.bottom).offset(30)
+        }
 
     }
 

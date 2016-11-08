@@ -19,13 +19,21 @@ class App: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
 
+        UINavigationBar.appearance().tintColor = .black
+
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.rootViewController = UINavigationController(rootViewController: CollectionList())
+        window.makeKeyAndVisible()
+
+        self.window = window
+
         _state.item.modifyItem
             .asObservable()
             .skip(1)
             .subscribe(onNext: { item in
                 if let _ = item {
                     // =.= 如果有修改项目，跳到修改项目页
-                    topViewController()?.show(R.storyboard.collection.editComponent()!, sender: nil)
+                    topViewController()?.show(UINavigationController(rootViewController: EditItem()), sender: nil)
                 }
             })
             .addDisposableTo(disposeBag)
@@ -36,7 +44,7 @@ class App: UIResponder, UIApplicationDelegate {
             .distinctUntilChanged()
             .subscribe(onNext: { item in
                 if let _ = item {
-                    topViewController()?.show(R.storyboard.collection.itemDetail()!, sender: nil)
+                    topViewController()?.show(ItemDetail(), sender: nil)
                 }
             })
             .addDisposableTo(disposeBag)

@@ -15,10 +15,10 @@ struct ItemState: ReducerAction {
 
     typealias ActionType = ItemAction
 
-    lazy private(set) var modifyItem = Variable<IconItem?>(nil)
-    lazy private(set) var modifyImage = Variable<UIImage?>(nil)
-    lazy private(set) var modifyTitle = Variable<String?>(nil)
-    lazy private(set) var displayItem = Variable<IconItem?>(nil)
+    private(set) var modifyItem = Variable<IconItem?>(nil)
+    private(set) var modifyImage = Variable<UIImage?>(nil)
+    private(set) var modifyTitle = Variable<String?>(nil)
+    private(set) var displayItem = Variable<IconItem?>(nil)
 
     mutating func reducer(_ action: ItemAction) {
         switch action {
