@@ -1,5 +1,5 @@
 github "jdg/MBProgressHUD" "1.0.0"
 github "mac-cain13/R.swift.Library" "v3.0.2"
-github "ReactiveX/RxSwift" "3.0.0"
+github "ReactiveX/RxSwift" "3.0.1"
 github "RxSwiftCommunity/RxDataSources" "1.0.1"
 github "DianQK/RxExtensions" "0.3.11"
